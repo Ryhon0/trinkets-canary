@@ -103,17 +103,17 @@ publishing {
 			from components.java
 		}
 	}
-    setupRepositories(repositories)
+	setupRepositories(repositories)
 }
 
 void setupRepositories(RepositoryHandler repositories) {
 	if (project.hasProperty("mavenUrl")) {
-        repositories.maven {
-            url project.mavenUrl
-            credentials {
-                username project.mavenUsername
-                password project.mavenPassword
-            }
-        }
-    }
+		repositories.maven {
+			url project.mavenUrl
+			credentials {
+				username project.mavenUsername
+				password project.mavenPassword
+			}
+		}
+	}
 }
