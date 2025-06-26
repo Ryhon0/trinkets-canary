@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 version = project.mod_version
@@ -8,6 +9,18 @@ group = project.maven_group
 
 base {
 	archivesName = project.archives_base_name
+}
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "trinkets-canary"
+    versionNumber = project.mod_version + "-" + project.minecraft_version
+    versionType = "release"
+    uploadFile = remapJar
+    gameVersions = [project.minecraft_version]
+    loaders = ["fabric", "quilt"]
+    dependencies {
+    }
 }
 
 repositories {
