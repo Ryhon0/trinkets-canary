@@ -38,7 +38,9 @@ public class TrinketFeatureRenderer<T extends LivingEntityRenderState, M extends
 
 	@Override
 	public void render(MatrixStack matrices, OrderedRenderCommandQueue queue, int light, T state, float limbAngle, float limbDistance) {
-		((TrinketEntityRenderState) state).trinkets$getState().forEach(pair -> {
+		TrinketEntityRenderState trinketState = (TrinketEntityRenderState) state;
+		if (trinketState.trinkets$getState() == null) return;
+		trinketState.trinkets$getState().forEach(pair -> {
 			TrinketRendererRegistry.getRenderer(pair.getLeft().getItem()).ifPresent(renderer -> {
 				matrices.push();
 				renderer.render(pair.getLeft(), pair.getRight(), this.getContextModel(), matrices, queue,
